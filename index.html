@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Cricket & Football Streaming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: #34495e;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .card {
+      background: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tabs button {
+      padding: 10px 15px;
+      border: none;
+      background: #bdc3c7;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .tabs button.active {
+      background: #2c3e50;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .sticky-score {
+      position: sticky;
+      top: 0;
+      background: #ecf0f1;
+      padding: 10px;
+      font-weight: bold;
+      z-index: 10;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .channel-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    .channel-buttons button {
+      padding: 8px 12px;
+      border: none;
+      background: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .channel-buttons button:hover {
+      background: #2c3e50;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    @media(max-width: 768px) {
+      iframe { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏏⚽ Live Cricket & Football</h1>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Cricket</a>
+  <a href="#">Football</a>
+</nav>
+
+<section class="card">
+  <h2>🔥 Live Match</h2>
+  <p>Australia vs South Africa - Test Series</p>
+</section>
+
+<section class="card">
+  <h2>📅 Today’s Schedule</h2>
+  <ul>
+    <li>Australia vs South Africa - 3:30 PM</li>
+  </ul>
+</section>
+
+<section class="card">
+  <div class="tabs">
+    <button onclick="openTab('overview')" class="active">Overview</button>
+    <button onclick="openTab('scorecard')">Scorecard</button>
+    <button onclick="openTab('commentary')">Commentary</button>
+    <button onclick="openTab('highlights')">Highlights</button>
+    <button onclick="openTab('live')">Live Video</button>
+  </div>
+
+  <div id="overview" class="tab-content active">
+    <p>Match Overview: High tension match between rivals.</p>
+  </div>
+
+  <div id="scorecard" class="tab-content">
+    <p>Live Score: Australia 212 & 145/8</p>
+    <p>South Africa: 138</p>
+  </div>
+
+  <div id="commentary" class="tab-content">
+    <p>Ball-by-ball commentary coming soon...</p>
+  </div>
+
+  <div id="highlights" class="tab-content">
+    <p>Highlights will be updated after match.</p>
+  </div>
+
+  <div id="live" class="tab-content">
+    <div class="channel-buttons" id="channelList"></div>
+    <iframe id="streamPlayer" src="https://topembed.pw/channel/SkySportsCricket[UK]" allowfullscreen></iframe>
+  </div>
+</section>
+
+<script>
+  function openTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  const matchData = {
+    channels: [
+      "https://topembed.pw/channel/SkySportsCricket[UK]",
+      "https://topembed.pw/channel/SkySportsMainEvent[UK]",
+      "https://topembed.pw/channel/AstroCricket[Malaysia]",
+      "https://topembed.pw/channel/SkySport1[NewZealand]",
+      "https://topembed.pw/channel/SkySport2[NewZealand]",
+      "https://topembed.pw/channel/SuperSportGrandstand[SouthAfrica]",
+      "https://topembed.pw/channel/SuperSportCricket[SouthAfrica]"
+    ]
+  };
+
+  const channelList = document.getElementById('channelList');
+  const streamPlayer = document.getElementById('streamPlayer');
+
+  matchData.channels.forEach(link => {
+    const btn = document.createElement('button');
+    const nameRaw = link.split('/channel/')[1] || "Channel";
+    const cleanName = nameRaw.replace(/\[.*?\]/g, '').replace(/([A-Z])/g, ' $1').trim();
+    btn.textContent = cleanName;
+    btn.onclick = () => streamPlayer.src = link;
+    channelList.appendChild(btn);
+  });
+</script>
+
+</body>
+</html>
