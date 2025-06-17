@@ -1439,5 +1439,18 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Find your button
+      var btn = document.getElementById('show-ad-btn');
+      btn.addEventListener('click', function() {
+        // Dynamically inject the ad script
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src  = '//tolerancewarily.com/a6/32/aa/a632aa5c2b751bcf6b99383b43c8fed4.js';
+        document.body.appendChild(s);
+      });
+    });
+  </script>
 </body>
 </html>
