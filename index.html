@@ -1351,59 +1351,7 @@
             const futureTime = new Date(now.getTime() + 120 * 60000); // Starts in 2 hours
             const pastTime = new Date(now.getTime() - 180 * 60000); // Ended 3 hours ago
             
-            const sampleMatches = [
-                {
-                    id: '1',
-                    title: 'India vs Pakistan',
-                    category: 'cricket',
-                    tournament: 'T20 World Cup',
-                    description: 'Epic cricket rivalry continues in this must-watch T20 match.',
-                    startDate: today,
-                    startTime: liveTime.toTimeString().slice(0, 5),
-                    duration: 180,
-                    status: 'live',
-                    servers: [
-                        { name: 'Server 1', url: 'https://example.com/stream1' },
-                        { name: 'Server 2', url: 'https://example.com/stream2' },
-                        { name: 'HD Server', url: 'https://example.com/stream3' }
-                    ],
-                    createdAt: new Date()
-                },
-                {
-                    id: '2',
-                    title: 'Manchester United vs Liverpool',
-                    category: 'football',
-                    tournament: 'Premier League',
-                    description: 'Classic Premier League rivalry match.',
-                    startDate: today,
-                    startTime: futureTime.toTimeString().slice(0, 5),
-                    duration: 90,
-                    status: 'scheduled',
-                    servers: [
-                        { name: 'Stream 1', url: 'https://example.com/football1' },
-                        { name: 'Stream 2', url: 'https://example.com/football2' }
-                    ],
-                    createdAt: new Date()
-                },
-                {
-                    id: '3',
-                    title: 'Lakers vs Warriors',
-                    category: 'basketball',
-                    tournament: 'NBA Regular Season',
-                    description: 'Western Conference showdown.',
-                    startDate: today,
-                    startTime: pastTime.toTimeString().slice(0, 5),
-                    duration: 120,
-                    status: 'ended',
-                    servers: [
-                        { name: 'NBA Stream', url: 'https://example.com/nba1' }
-                    ],
-                    createdAt: new Date()
-                }
-            ];
-            
-            matches.push(...sampleMatches);
-        }
+           
 
         // Add CSS animations
         const style = document.createElement('style');
@@ -1434,7 +1382,7 @@
                 color: var(--primary-color);
                 transform: none;
             }
-        `;
+        `;}
         document.head.appendChild(style);
     </script>
 </body>
